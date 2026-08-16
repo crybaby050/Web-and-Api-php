@@ -47,7 +47,7 @@
     </script>
 </head>
 <body class="bg-clay-bg min-h-screen text-slate-700 font-sans">
-    <div class="max-w-2xl mx-auto px-5 py-10">
+    <div class="max-w-6xl mx-auto px-5 py-10">
 
         <!-- Navigation claymorphiste -->
         <nav class="flex gap-3 bg-clay-surface rounded-clay shadow-clay px-5 py-4 mb-8">

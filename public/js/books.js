@@ -31,8 +31,8 @@ function masquerMessage() {
 
 /**
  * Construit le fragment HTML (Tailwind) d'une carte livre.
- * Carte verticale, pensée pour s'aligner proprement dans la grille
- * de 3 colonnes de la liste.
+ * overflow-hidden + shrink-0 sur le bouton delete empêchent tout
+ * débordement visuel de la carte, quelle que soit sa largeur.
  * @param {{id:number, titre:string, auteur:string, disponible:boolean}} livre
  */
 function carteLivre(livre) {
@@ -42,19 +42,19 @@ function carteLivre(livre) {
     const badgeTexte = livre.disponible ? 'Disponible' : 'Indisponible';
 
     return `
-        <div class="book-card flex flex-col justify-between bg-clay-surface rounded-clay shadow-clay p-5" data-id="${livre.id}">
-            <div>
-                <h3 class="font-semibold">${escapeHtml(livre.titre)}</h3>
-                <p class="text-sm text-slate-500 mt-1">${escapeHtml(livre.auteur)}</p>
+        <div class="book-card flex flex-col justify-between bg-clay-surface rounded-clay shadow-clay p-5 overflow-hidden" data-id="${livre.id}">
+            <div class="min-w-0">
+                <h3 class="font-semibold truncate">${escapeHtml(livre.titre)}</h3>
+                <p class="text-sm text-slate-500 mt-1 truncate">${escapeHtml(livre.auteur)}</p>
                 <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-semibold ${badgeClasses}">
                     ${badgeTexte}
                 </span>
             </div>
-            <div class="flex gap-2 mt-4">
-                <button class="btn-toggle flex-1 bg-clay-bg rounded-xl px-3 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition" data-id="${livre.id}">
+            <div class="flex items-center gap-2 mt-4">
+                <button class="btn-toggle flex-1 min-w-0 bg-clay-bg rounded-xl px-3 py-2 text-xs font-semibold shadow-clay-sm hover:shadow-clay-inset transition truncate" data-id="${livre.id}">
                     ↺ Basculer
                 </button>
-                <button class="btn-delete bg-clay-bg rounded-xl px-3 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition text-red-500" data-id="${livre.id}">
+                <button class="btn-delete shrink-0 bg-clay-bg rounded-xl px-3 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition text-red-500" data-id="${livre.id}">
                     🗑
                 </button>
             </div>

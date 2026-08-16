@@ -18,9 +18,8 @@
 <div class="flex flex-col lg:flex-row gap-8 items-start">
 
     <!-- Colonne principale : liste des livres (grille de 3) -->
-    <div class="w-full lg:w-2/3 order-2 lg:order-1">
+    <div class="w-full lg:w-2/3 min-w-0 order-2 lg:order-1">
 
-        <!-- Message d'erreur / info, masqué par défaut -->
         <p id="message" class="hidden mb-4 text-sm font-semibold"></p>
 
         <div id="liste-livres" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -29,8 +28,8 @@
 
     </div>
 
-    <!-- Colonne latérale : formulaire d'ajout, compact et collant -->
-    <div class="w-full lg:w-1/3 order-1 lg:order-2 lg:sticky lg:top-10">
+    <!-- Colonne latérale : formulaire d'ajout -->
+    <div class="w-full lg:w-1/3 min-w-0 order-1 lg:order-2 lg:sticky lg:top-10">
         <form id="form-ajout" class="bg-clay-surface rounded-clay shadow-clay p-6 flex flex-col gap-4">
             <h2 class="font-semibold text-lg mb-1">Ajouter un livre</h2>
 
