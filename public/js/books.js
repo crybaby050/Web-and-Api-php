@@ -31,6 +31,8 @@ function masquerMessage() {
 
 /**
  * Construit le fragment HTML (Tailwind) d'une carte livre.
+ * Carte verticale, pensée pour s'aligner proprement dans la grille
+ * de 3 colonnes de la liste.
  * @param {{id:number, titre:string, auteur:string, disponible:boolean}} livre
  */
 function carteLivre(livre) {
@@ -40,19 +42,19 @@ function carteLivre(livre) {
     const badgeTexte = livre.disponible ? 'Disponible' : 'Indisponible';
 
     return `
-        <div class="book-card flex items-center justify-between bg-clay-surface rounded-clay shadow-clay px-6 py-4" data-id="${livre.id}">
+        <div class="book-card flex flex-col justify-between bg-clay-surface rounded-clay shadow-clay p-5" data-id="${livre.id}">
             <div>
                 <h3 class="font-semibold">${escapeHtml(livre.titre)}</h3>
-                <p class="text-sm text-slate-500">${escapeHtml(livre.auteur)}</p>
-                <span class="inline-block mt-2 px-3 py-1 rounded-full text-xs font-semibold ${badgeClasses}">
+                <p class="text-sm text-slate-500 mt-1">${escapeHtml(livre.auteur)}</p>
+                <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-semibold ${badgeClasses}">
                     ${badgeTexte}
                 </span>
             </div>
-            <div class="flex gap-2">
-                <button class="btn-toggle bg-clay-bg rounded-xl px-4 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition" data-id="${livre.id}">
-                    ↺
+            <div class="flex gap-2 mt-4">
+                <button class="btn-toggle flex-1 bg-clay-bg rounded-xl px-3 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition" data-id="${livre.id}">
+                    ↺ Basculer
                 </button>
-                <button class="btn-delete bg-clay-bg rounded-xl px-4 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition text-red-500" data-id="${livre.id}">
+                <button class="btn-delete bg-clay-bg rounded-xl px-3 py-2 text-sm font-semibold shadow-clay-sm hover:shadow-clay-inset transition text-red-500" data-id="${livre.id}">
                     🗑
                 </button>
             </div>
@@ -76,7 +78,7 @@ function escapeHtml(texte) {
  */
 function rendu(livres) {
     if (livres.length === 0) {
-        listeEl.innerHTML = `<p class="text-slate-400 text-center py-6">Aucun livre pour le moment.</p>`;
+        listeEl.innerHTML = `<p class="text-slate-400 text-center py-6 col-span-full">Aucun livre pour le moment.</p>`;
         return;
     }
 
